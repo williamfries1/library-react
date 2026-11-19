@@ -1,14 +1,13 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { books } from "../data";
 import Rating from "../components/ui/Rating.jsx";
 import Price from "../components/ui/Price.jsx";
-import { useParams } from "react-router-dom";
 
 const BookInfo = ({ books }) => {
   const { id } = useParams();
-  const book = books.find((book) => book.id == parseInt(id));
+  const book = books.find((book) => +book.id === +id);
   return (
     <div id="books__body">
       <main id="books__main">
@@ -52,6 +51,14 @@ const BookInfo = ({ books }) => {
                 </div>
                 <button className="btn">Add to Cart</button>
               </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="books__container">
+          <div className="row">
+            <div className="book__selected--top">
+              <h2 className="book__selected--title--top">Recommended Books</h2>
             </div>
           </div>
         </div>

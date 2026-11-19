@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 const Cart = ({ cart, changeQuantity }) => {
   const total = () => {
@@ -46,7 +46,7 @@ const Cart = ({ cart, changeQuantity }) => {
                         />
                       </div>
                       <div className="cart__total">
-                        ${(book.salePrice || book.originalPrice) * book.quantity}
+                        ${((book.salePrice || book.originalPrice) * book.quantity).toFixed(2)}
                       </div>
                     </div>
                   );
@@ -64,7 +64,7 @@ const Cart = ({ cart, changeQuantity }) => {
               </div>
               <div className="total__item total__price">
                 <span>Total</span>
-                <span>${total()}</span>
+                <span>${total().toFixed(2)}</span>
               </div>
               <button
                 className="btn btn__checkout no-cursor"

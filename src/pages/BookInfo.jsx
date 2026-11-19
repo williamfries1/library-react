@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { books } from "../data";
 import Rating from "../components/ui/Rating.jsx";
 import Price from "../components/ui/Price.jsx";
+import Book from "../components/ui/Book.jsx";
 
 const BookInfo = ({ books }) => {
   const { id } = useParams();
@@ -35,7 +36,7 @@ const BookInfo = ({ books }) => {
                   />
                 </div>
                 <div className="book__summary">
-                  <div className="book__summary--title">Summary</div>
+                  <h3 className="book__summary--title">Summary</h3>
                   <p className="book__summary--para">
                     Lorem, ipsum dolor sit amet consectetur adipisicing elit.
                     Ipsa dolores, soluta pariatur veritatis placeat quae nulla
@@ -59,6 +60,13 @@ const BookInfo = ({ books }) => {
           <div className="row">
             <div className="book__selected--top">
               <h2 className="book__selected--title--top">Recommended Books</h2>
+            </div>
+            <div className="books"> 
+              {books
+                .filter((book) => book.rating === 5 && book.id === !id)
+                .slice(0, 4)
+                .map((book) => (<Book book={book} key={book.id}/>))
+              }
             </div>
           </div>
         </div>

@@ -1,11 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { books } from '../data';
-import Rating from '../components/ui/Rating.jsx';
-import Price from '../components/ui/Price.jsx';
+import { books } from "../data";
+import Rating from "../components/ui/Rating.jsx";
+import Price from "../components/ui/Price.jsx";
+import { useParams } from "react-router-dom";
 
 const BookInfo = ({ books }) => {
+  const { id } = useParams();
+  const book = books.find((book) => book.id == parseInt(id));
   return (
     <div id="books__body">
       <main id="books__main">
@@ -21,14 +24,33 @@ const BookInfo = ({ books }) => {
             </div>
             <div className="book__selected">
               <figure className="book__selected--figure">
-                <img src={books.url} alt="" className="book__selected--img" />
+                <img src={book.url} alt="" className="book__selected--img" />
               </figure>
               <div className="book__selected--description">
-                <h2 className="book__selected--title"></h2>
-                <Rating rating="4.5"/>
+                <h2 className="book__selected--title">{book.title}</h2>
+                <Rating rating={book.rating} />
                 <div className="book__selected--price">
-                  <Price />
+                  <Price
+                    originalPrice={book.originalPrice}
+                    salePrice={book.salePrice}
+                  />
                 </div>
+                <div className="book__summary">
+                  <div className="book__summary--title">Summary</div>
+                  <p className="book__summary--para">
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                    Ipsa dolores, soluta pariatur veritatis placeat quae nulla
+                    voluptates porro. Illo corrupti odit enim fugit totam rerum
+                    numquam minima, quam eum eaque?
+                  </p>
+                  <p className="book__summary--para">
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                    Ipsa dolores, soluta pariatur veritatis placeat quae nulla
+                    voluptates porro. Illo corrupti odit enim fugit totam rerum
+                    numquam minima, quam eum eaque?
+                  </p>
+                </div>
+                <button className="btn">Add to Cart</button>
               </div>
             </div>
           </div>
